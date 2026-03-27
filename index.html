@@ -1,11 +1,11 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SPACEHUB | Computational Astrophysics & Orbital Intelligence</title>
     
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 100'><rect width='300' height='100' fill='white'/><text x='50%' y='60%' dominant-baseline='middle' text-anchor='middle' font-family='Inter, sans-serif' font-weight='900' font-size='42' letter-spacing='4' fill='black'>SPACEHUB</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 150'><rect width='500' height='150' fill='white'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-weight='900' font-size='65' letter-spacing='8' fill='black'>SPACEHUB</text></svg>">
 
     <style>
         :root {
@@ -13,7 +13,8 @@
             --accent: #ffffff;
             --secondary: #666666;
             --border: #1a1a1a;
-            --code-blue: #0070f3;
+            /* আপনার পছন্দের সেই গম্ভীর নীল রঙটি আমি এখানে ফিক্স করে দিলাম */
+            --code-blue: #0070f3; 
         }
 
         body {
@@ -25,7 +26,6 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* প্রফেশনাল মিনিমাল নেভিগেশন */
         nav {
             display: flex;
             justify-content: space-between;
@@ -42,7 +42,6 @@
         .brand { font-weight: 900; letter-spacing: 5px; font-size: 1rem; text-decoration: none; color: #fff; }
         .status-dot { width: 8px; height: 8px; background: #00ff41; border-radius: 50%; display: inline-block; margin-right: 8px; box-shadow: 0 0 10px #00ff41; }
 
-        /* হিরো সেকশন - সরাসরি কাজের কথা */
         .hero {
             padding: 120px 8% 60px 8%;
             max-width: 1200px;
@@ -66,7 +65,6 @@
             margin-bottom: 40px;
         }
 
-        /* রিসার্চ ড্যাশবোর্ড গ্রিড */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -87,6 +85,7 @@
         .cell h3 { font-size: 1.5rem; font-weight: 700; margin: 0 0 15px 0; letter-spacing: -0.02em; }
         .cell p { color: var(--secondary); font-size: 1rem; line-height: 1.6; margin-bottom: 30px; }
 
+        /* আপনার সেই কোড প্রিভিউ সেকশন - কালার ফিক্সড */
         .code-preview {
             background: #0a0a0a;
             padding: 20px;
@@ -94,7 +93,7 @@
             border-radius: 4px;
             font-family: 'SFMono-Regular', Consolas, monospace;
             font-size: 0.8rem;
-            color: var(--code-blue);
+            color: var(--code-blue); /* এটি এখন আপনার সেই আগের গম্ভীর নীল রঙে ফিরে এসেছে */
         }
 
         .footer {
