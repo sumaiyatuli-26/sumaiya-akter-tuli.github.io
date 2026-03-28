@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Signal Recovery | SPACEHUB</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body { font-family: 'Georgia', serif; line-height: 1.6; padding: 50px; max-width: 800px; margin: auto; }
+        .header { border-bottom: 2px solid #000; margin-bottom: 30px; }
+        .equation { background: #f4f4f4; padding: 20px; text-align: center; margin: 20px 0; }
+        pre { background: #111; color: #00ff41; padding: 20px; overflow-x: auto; }
+        .challenge { background: #f0f7ff; border-left: 5px solid #0070f3; padding: 20px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="header"><h2>SPACEHUB | Signal Intelligence</h2></div>
+    <h1>Interstellar Signal Recovery</h1>
+    <p>Recovering weak telemetry from deep space requires isolation from Gaussian noise.</p>
+    <div class="equation">\[ C = B \log_2 \left( 1 + \frac{S}{N} \right) \]</div>
+    <h3>Python Implementation:</h3>
+    <pre>def filter_noise(data): return np.fft.ifft(np.fft.fft(data) * mask)</pre>
+    <div class="challenge">
+        <strong>Challenge: Relativistic Doppler Shift</strong>
+        <p>The high velocity of the probe causes frequency drift, requiring real-time phase-lock loops.</p>
+    </div>
+</body>
+</html>
