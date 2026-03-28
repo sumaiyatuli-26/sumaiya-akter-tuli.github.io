@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orbital Trajectory | SPACEHUB</title>
+    <style>
+        :root { --bg: #000; --text: #fff; --sub: #666; --accent: #0070f3; --border: #1a1a1a; }
+        body { background: var(--bg); color: var(--text); font-family: -apple-system, system-ui, sans-serif; margin: 0; line-height: 1.6; }
+        
+        .container { max-width: 800px; margin: 0 auto; padding: 60px 20px; }
+        .back-btn { color: var(--sub); text-decoration: none; font-size: 0.8rem; letter-spacing: 1px; display: inline-block; margin-bottom: 40px; border: 1px solid var(--border); padding: 8px 15px; border-radius: 4px; }
+        .back-btn:hover { border-color: var(--sub); color: #fff; }
+
+        h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; margin: 0 0 20px 0; letter-spacing: -2px; line-height: 1.1; }
+        .intro { color: var(--sub); font-size: 1.1rem; margin-bottom: 50px; max-width: 600px; }
+
+        /* TAB SYSTEM */
+        .tabs { display: flex; gap: 30px; border-bottom: 1px solid var(--border); margin-bottom: 30px; }
+        .tab-btn { background: none; border: none; color: var(--sub); padding: 12px 0; cursor: pointer; font-family: monospace; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; position: relative; transition: 0.3s; }
+        .tab-btn.active { color: var(--text); font-weight: bold; }
+        .tab-btn.active::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 100%; height: 2px; background: var(--accent); }
+
+        /* CODE AREA */
+        .code-window { background: #050505; border: 1px solid var(--border); border-radius: 8px; padding: 25px; min-height: 350px; display: none; overflow-x: auto; }
+        .code-window.active { display: block; }
+        pre { margin: 0; color: #d4d4d4; font-family: 'SFMono-Regular', Consolas, monospace; font-size: 0.9rem; line-height: 1.7; }
+        
+        /* MATH STYLE */
+        .math-box { text-align: center; padding: 40px; background: #111; border-radius: 8px; margin: 20px 0; }
+        .formula { font-size: 1.5rem; color: var(--accent); font-family: serif; }
+        .math-desc { color: var(--sub); font-size: 0.95rem; margin-top: 20px; line-height: 1.8; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="index.html" class="back-btn">← BACK TO ARCHIVE</a>
+    
+    <h1>Orbital Trajectory <br>Optimization.</h1>
+    <p class="intro">
+        An engineering framework for calculating Hohmann Transfer Orbits—the most fuel-efficient method for interplanetary travel between Earth and Mars.
+    </p>
+
+    <div class="tabs">
+        <div class="tab-btn active" onclick="openLang(event, 'py')">Python</div>
+        <div class="tab-btn" onclick="openLang(event, 'cpp')">C++</div>
+        <div class="tab-btn" onclick="openLang(event, 'logic')">Research Logic</div>
+    </div>
+
+    <div id="py" class="code-window active">
+        <pre>
+import math
+
+def get_delta_v(r1, r2):
+    """
+    Calculates Delta-V for Hohmann Transfer.
+    r1: Initial orbit radius (km)
+    r2: Target orbit radius (km)
+    mu: Earth's gravitational parameter
+    """
+    mu = 3.986004418e5 
+    
+    # Phase 1: Injection burn
+    v1 = math.sqrt(mu / r1)
+    v_perigee = math.sqrt(mu / r1) * math.sqrt((2 * r2) / (r1 + r2))
+    dv1 = v_perigee - v1
+    
+    # Phase 2: Circularization burn
+    v2 = math.sqrt(mu / r2)
+    v_apogee = math.sqrt(mu / r2) * math.sqrt((2 * r1) / (r1 + r2))
+    dv2 = v2 - v_apogee
+    
+    return dv1 + dv2
+
+# Example: LEO to Geostationary
+total_burn = get_delta_v(6700, 42164)
+print(f"Total Delta-V: {total_burn:.4f} km/s")
+        </pre>
+    </div>
+
+    <div id="cpp" class="code-window">
+        <pre>
+#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+#include &lt;iomanip&gt;
+
+double calculateDeltaV(double r1, double r2) {
+    const double mu = 398600.44;
+    
+    double v1 = std::sqrt(mu / r1);
+    double v_perigee = v1 * std::sqrt((2 * r2) / (r1 + r2));
+    double dv1 = v_perigee - v1;
+    
+    double v2 = std::sqrt(mu / r2);
+    double v_apogee = v2 * std::sqrt((2 * r1) / (r1 + r2));
+    double dv2 = v2 - v_apogee
+    
+    return dv1 + dv2;
+}
+
+int main() {
+    std::cout << "Delta-V Required: " << calculateDeltaV(6700, 42164) << " km/s";
+    return 0;
+}
+        </pre>
+    </div>
+
+    <div id="logic" class="code-window">
+        <div class="math-box">
+            <div class="formula">Δv = √ (μ / r₁) * [ √ (2r₂ / (r₁ + r₂)) - 1 ]</div>
+            <p class="math-desc">
+                The <strong>Hohmann Transfer Orbit</strong> uses two impulsive burns to move a spacecraft between two coplanar circular orbits. 
+                <br><br>
+                <strong>μ (Mu):</strong> Standard gravitational parameter. <br>
+                <strong>r₁:</strong> Starting radius (Earth Orbit). <br>
+                <strong>r₂:</strong> Destination radius (Target Orbit).
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openLang(evt, langName) {
+        var i, x, tablinks;
+        x = document.getElementsByClassName("code-window");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+            x[i].classList.remove("active");
+        }
+        tablinks = document.getElementsByClassName("tab-btn");
+        for (i = 0; i < x.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(langName).style.display = "block";
+        document.getElementById(langName).classList.add("active");
+        evt.currentTarget.className += " active";
+    }
+</script>
+
+</body>
+</html>
