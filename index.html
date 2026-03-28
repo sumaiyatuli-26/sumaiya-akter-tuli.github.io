@@ -2,34 +2,94 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>SPACEHUB | Research Archive</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPACEHUB | Advanced Systems Engineering</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 150'><rect width='500' height='150' fill='white'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-weight='900' font-size='65' letter-spacing='8' fill='black'>SPACEHUB</text></svg>">
     <style>
-        :root { --bg: #0a0a0a; --accent: #0070f3; --text: #eaeaea; }
-        body { background: var(--bg); color: var(--text); font-family: sans-serif; margin: 0; padding: 40px; }
-        .container { max-width: 900px; margin: 0 auto; }
-        header { border-left: 4px solid var(--accent); padding-left: 20px; margin-bottom: 50px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-        .card { background: #111; border: 1px solid #222; padding: 25px; border-radius: 8px; text-decoration: none; color: #eee; transition: 0.3s; }
-        .card:hover { border-color: var(--accent); transform: translateY(-5px); }
-        .id { color: var(--accent); font-family: monospace; font-size: 0.8rem; }
-        .title { font-size: 1.2rem; margin: 15px 0; font-weight: bold; }
+        :root { --bg: #000000; --text: #ffffff; --sub: #666666; --border: #1a1a1a; --accent: #0070f3; }
+        body { background: var(--bg); color: var(--text); font-family: -apple-system, sans-serif; margin: 0; line-height: 1.6; }
+        nav { padding: 30px 8%; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; }
+        .brand { font-weight: 800; letter-spacing: 4px; text-decoration: none; color: #fff; font-size: 0.9rem; }
+        .hero { padding: 80px 8% 40px 8%; }
+        h1 { font-size: 3.5rem; font-weight: 700; letter-spacing: -2px; margin: 0; line-height: 1.1; }
+        .mission { color: var(--sub); max-width: 650px; font-size: 1.1rem; margin-top: 20px; }
+        .project-list { padding: 40px 8% 100px 8%; }
+        .project-item { border-top: 1px solid var(--border); padding: 45px 0; display: grid; grid-template-columns: 1fr 2fr; gap: 40px; }
+        .project-meta { font-family: monospace; font-size: 0.75rem; color: var(--sub); text-transform: uppercase; }
+        .project-content h3 { font-size: 1.6rem; margin: 0 0 12px 0; font-weight: 600; }
+        .project-link { text-decoration: none; color: inherit; transition: 0.2s; }
+        .project-link:hover h3 { color: var(--accent); }
+        .project-content p { color: var(--sub); font-size: 1rem; margin-bottom: 25px; }
+        .code-block { font-family: monospace; color: #00ff41; background: #050505; padding: 12px 18px; border: 1px solid #111; border-radius: 4px; font-size: 0.85rem; display: inline-block; }
+        .footer { padding: 40px 8%; font-size: 0.7rem; color: #444; border-top: 1px solid var(--border); display: flex; justify-content: space-between; }
+        @media (max-width: 768px) { h1 { font-size: 2.5rem; } .project-item { grid-template-columns: 1fr; gap: 15px; } }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header><h1>SPACEHUB Archive</h1><p>AEROSPACE & SYSTEMS ENGINEERING</p></header>
-        <div class="grid" id="engine"></div>
+
+<nav>
+    <a href="index.html" class="brand">SPACEHUB</a>
+    <div style="font-size: 0.6rem; color: #00ff41; letter-spacing: 2px;">V2.0.0 // FULL ARCHIVE ACTIVE</div>
+</nav>
+
+<div class="hero">
+    <h1>Systems for the <br>Next Frontier.</h1>
+    <p class="mission">Advanced computational frameworks for orbital mechanics, non-linear state estimation, and hyper-velocity planetary entry. Focused on the mission to Mars.</p>
+</div>
+
+<div class="project-list">
+    
+    <div class="project-item">
+        <div class="project-meta">01 // Dynamics</div>
+        <div class="project-content">
+            <a href="orbital.html" class="project-link"><h3>Trajectory Optimization</h3></a>
+            <p>Minimum-energy interplanetary transfer modeling using Hohmann dynamics and N-body perturbation analysis.</p>
+            <div class="code-block">dv_total = solve_hohmann_transfer(r1, r2, mu)</div>
+        </div>
     </div>
-    <script>
-        const database = [
-            { id: "SYS-01", title: "Orbital Trajectory Optimization", link: "orbital.html" },
-            { id: "SIG-02", title: "Interstellar Signal Recovery", link: "signal.html" },
-            { id: "ROB-03", title: "Autonomous Debris Mitigation", link: "debris.html" }
-        ];
-        const engine = document.getElementById('engine');
-        database.forEach(p => {
-            engine.innerHTML += `<a href="${p.link}" class="card"><div class="id">${p.id}</div><div class="title">${p.title}</div><div>Access Data →</div></a>`;
-        });
-    </script>
+
+    <div class="project-item">
+        <div class="project-meta">02 // Intel</div>
+        <div class="project-content">
+            <a href="signal.html" class="project-link"><h3>Interstellar Signal Recovery</h3></a>
+            <p>Advanced noise-reduction kernels designed to isolate telemetry from cosmic microwave background interference.</p>
+            <div class="code-block">clean_signal = apply_fft_mask(raw_buffer, threshold)</div>
+        </div>
+    </div>
+
+    <div class="project-item">
+        <div class="project-meta">03 // Robotics</div>
+        <div class="project-content">
+            <a href="debris.html" class="project-link"><h3>Autonomous Debris Mitigation</h3></a>
+            <p>Proximity operations using Clohessy-Wiltshire equations for autonomous grasping and orbital waste collection.</p>
+            <div class="code-block">thrust_vector = compute_cw_rendezvous(pos, vel)</div>
+        </div>
+    </div>
+
+    <div class="project-item">
+        <div class="project-meta">04 // Aero</div>
+        <div class="project-content">
+            <a href="entry.html" class="project-link"><h3>Hypersonic Entry Simulation</h3></a>
+            <p>Predictive modeling of stagnation point heat flux and plasma shielding during high-velocity Martian atmospheric entry.</p>
+            <div class="code-block">heat_q = sutton_grave_solver(rho, v, Rn)</div>
+        </div>
+    </div>
+
+    <div class="project-item">
+        <div class="project-meta">05 // Navigation</div>
+        <div class="project-content">
+            <a href="mars_lander.html" class="project-link"><h3>Non-Linear State Estimation (EDL)</h3></a>
+            <p>Real-time Terrain-Relative Navigation (TRN) implementation using Extended Kalman Filters for precision landing.</p>
+            <div class="code-block">state_est = update_kalman_filter(z_k, u_k)</div>
+        </div>
+    </div>
+
+</div>
+
+<div class="footer">
+    <div>&copy; 2026 SPACEHUB RESEARCH ARCHIVE</div>
+    <div>ENGINEER: <strong>SUMAIYA AKTER TULI</strong></div>
+</div>
+
 </body>
 </html>
