@@ -87,6 +87,17 @@
             font-weight: 600;
         }
 
+        /* লিঙ্কের স্টাইল */
+        .project-link {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.2s;
+        }
+
+        .project-link:hover h3 {
+            color: #0070f3; /* লিঙ্কে হোভার করলে নীল হবে */
+        }
+
         .project-content p {
             color: var(--sub);
             font-size: 1rem;
@@ -133,10 +144,13 @@
 
 <div class="grid-layout">
     <div class="project-list">
+        
         <div class="project-item">
             <div class="project-meta">01 // Orbital Mechanics</div>
             <div class="project-content">
-                <h3>Trajectory Optimization</h3>
+                <a href="orbital.html" class="project-link">
+                    <h3>Trajectory Optimization</h3>
+                </a>
                 <p>Mathematical modeling for fuel-efficient Hohmann Transfer Orbits between Earth and Mars.</p>
                 <div class="code-block">delta_v = calculate_hohmann(r1, r2)</div>
             </div>
@@ -147,7 +161,7 @@
             <div class="project-content">
                 <h3>Interstellar Signal Recovery</h3>
                 <p>Noise-reduction algorithms designed to stabilize high-frequency data from stellar sources.</p>
-                <div class="code-preview" style="color: #666; font-family: monospace;">signal_output = noise_filter(raw_data)</div>
+                <div class="code-block">signal_output = noise_filter(raw_data)</div>
             </div>
         </div>
 
@@ -159,6 +173,7 @@
                 <div class="code-block">init_docking_v1(target_id)</div>
             </div>
         </div>
+
     </div>
 </div>
 
