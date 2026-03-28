@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Debris Mitigation | SPACEHUB</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body { font-family: 'Georgia', serif; line-height: 1.6; padding: 50px; max-width: 800px; margin: auto; }
+        .header { border-bottom: 2px solid #000; margin-bottom: 30px; }
+        .equation { background: #f4f4f4; padding: 20px; text-align: center; margin: 20px 0; }
+        pre { background: #111; color: #00ff41; padding: 20px; }
+        .challenge { background: #fff9f0; border-left: 5px solid #f0a500; padding: 20px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="header"><h2>SPACEHUB | Robotic Systems</h2></div>
+    <h1>Autonomous Debris Mitigation</h1>
+    <p>Using relative motion dynamics to intercept orbital waste.</p>
+    <div class="equation">\[ \ddot{x} - 3n^2x - 2n\dot{y} = f_x \]</div>
+    <h3>C++ Control Logic:</h3>
+    <pre>void adjustJoint(double target) { torque = (target - current) * 15.5; }</pre>
+    <div class="challenge">
+        <strong>Challenge: Gimbal Lock</strong>
+        <p>Euler angle singularities were resolved by implementing a 4D Quaternion-based rotation kernel.</p>
+    </div>
+</body>
+</html>
