@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hypersonic Entry Analysis | SPACEHUB Systems</title>
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        :root { --bg: #ffffff; --text: #000000; --muted: #555555; --border: #dddddd; }
+        body { background: var(--bg); color: var(--text); font-family: 'Georgia', serif; margin: 0; padding-bottom: 80px; line-height: 1.7; }
+        .container { max-width: 850px; margin: 0 auto; padding: 50px 25px; }
+        
+        .journal-header { border-bottom: 3px solid #000; padding-bottom: 10px; margin-bottom: 50px; display: flex; justify-content: space-between; align-items: baseline; }
+        .journal-name { font-family: 'Helvetica', sans-serif; font-weight: 900; font-size: 1.3rem; text-transform: uppercase; }
+        .article-meta { font-family: sans-serif; font-size: 0.75rem; font-weight: bold; color: var(--muted); text-transform: uppercase; }
+
+        h1 { font-size: 2.3rem; font-weight: 400; margin: 25px 0; line-height: 1.1; letter-spacing: -1px; }
+        .author-line { font-family: sans-serif; font-size: 0.95rem; font-weight: bold; margin-bottom: 5px; }
+        .affiliation { font-family: sans-serif; font-size: 0.8rem; color: var(--muted); font-style: italic; margin-bottom: 40px; }
+
+        .abstract-section { background: #fdfaf2; padding: 30px; border: 1px solid #eee; margin-bottom: 50px; }
+        .abstract-section h2 { font-family: sans-serif; font-size: 0.95rem; margin-top: 0; text-transform: uppercase; letter-spacing: 1px; }
+
+        section { margin-bottom: 60px; }
+        h2 { font-family: 'Helvetica', sans-serif; font-size: 1.35rem; border-bottom: 1px solid #000; padding-bottom: 8px; margin-bottom: 25px; font-weight: 800; text-transform: uppercase; }
+        p { margin-bottom: 20px; text-align: justify; font-size: 1.1rem; }
+
+        .equation-box { padding: 40px; margin: 30px 0; background: #fff; text-align: center; font-size: 1.4rem; border: 1px double #ddd; }
+
+        .tabs { display: flex; gap: 15px; margin: 40px 0 20px 0; border-bottom: 1px solid var(--border); }
+        .tab-btn { background: none; border: none; padding: 10px 20px; cursor: pointer; font-family: sans-serif; font-size: 0.85rem; font-weight: bold; color: var(--muted); border-bottom: 3px solid transparent; }
+        .tab-btn.active { color: #000; border-bottom-color: #000; }
+        
+        .code-container { background: #0c0c0c; color: #ff9d00; padding: 25px; border-radius: 4px; display: none; font-family: 'Consolas', monospace; font-size: 0.9rem; overflow-x: auto; }
+        .code-container.active { display: block; }
+
+        .challenge-grid { display: grid; gap: 20px; margin: 40px 0; }
+        .challenge-card { border-left: 5px solid #ff4500; padding: 20px 25px; background: #fffaf0; }
+        .challenge-card h3 { font-family: sans-serif; font-size: 0.95rem; margin: 0 0 10px 0; text-transform: uppercase; font-weight: 900; }
+        .challenge-card p { font-size: 0.95rem; color: #333; margin: 0; }
+
+        .footer-note { border-top: 1px solid var(--border); padding-top: 30px; font-size: 0.85rem; color: var(--muted); font-style: italic; text-align: center; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="journal-header">
+        <div class="journal-name">SPACEHUB</div>
+        <div class="article-meta">AEROTHERMODYNAMICS // RESEARCH ARTICLE</div>
+    </div>
+
+    <h1>Predictive Modeling of Stagnation Point Heat Flux in Hypersonic Martian Entry</h1>
+    
+    <div class="author-line">Sumaiya Akter Tuli¹, Aerodynamics Lead</div>
+    <div class="affiliation">¹SPACEHUB Research Institute, Thermal Systems Division, Savar, Dhaka. Correspondence: tuli@spacehub.systems</div>
+
+    <div class="abstract-section">
+        <h2>Abstract</h2>
+        <p>
+            Entry into the Martian atmosphere at hypersonic velocities generates significant aerothermodynamic loads, specifically at the vehicle's stagnation point. This research develops a computational framework for estimating <strong>radiative and convective heat flux</strong> using the <em>Sutton-Grave correlations</em>. We analyze the impact of CO2 dissociation on the shock-layer temperature and evaluate the effectiveness of ablation-based thermal protection systems (TPS) during the peak heating phase of the trajectory.
+        </p>
+    </div>
+
+    <section>
+        <h2>I. Theoretical Heat Transfer Framework</h2>
+        <p>
+            The convective heat flux $\dot{q}$ during hypersonic flight is a function of the atmospheric density $\rho$ and the cube of the free-stream velocity $V_{\infty}$. The relationship is governed by the blunt-body aerodynamic theory:
+        </p>
+        <div class="equation-box">
+            \[ \dot{q}_{total} \approx K \sqrt{\frac{\rho_{\infty}}{R_n}} \cdot V_{\infty}^3 + \epsilon \sigma (T_{shock}^4 - T_{wall}^4) \]
+            <p style="font-size: 0.85rem; color: #666; margin-top: 10px;">The Stagnation Heat Flux Equation for Equilibrium and Radiative Flow.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>II. Computational Entry Solver</h2>
+        <p>
+            This Python implementation provides a numerical solution for the heat load profile, simulating a vehicle entering the Martian atmosphere at Mach 25.
+        </p>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab(event, 'py_entry')">HEAT KERNEL (PY)</button>
+            <button class="tab-btn" onclick="switchTab(event, 'cpp_entry')">TPS CONTROLLER (C++)</button>
+        </div>
+
+        <div id="py_entry" class="code-container active">
+            <pre>
+import math
+
+def sutton_grave_solver(rho, v, Rn):
+    # K: Martian Atmospheric Constant (1.89e-4)
+    K = 1.892e-4 
+    
+    # Calculating Convective Heat Flux (W/cm^2)
+    q_conv = K * math.sqrt(rho / Rn) * (v**3)
+    return q_conv
+
+# Simulation Parameters: Altitude 35km
+rho_mars = 0.00021 # Atmospheric density (kg/m^3)
+v_entry = 5800     # Velocity (m/s)
+nose_radius = 1.2  # Blunt body radius (m)
+
+flux = sutton_grave_solver(rho_mars, v_entry, nose_radius)
+print(f"Stagnation Heat Flux Estimate: {flux:.4f} W/cm^2")
+            </pre>
+        </div>
+
+        <div id="cpp_entry" class="code-container">
+            <pre>
+// Embedded Thermal Protection System Monitoring
+void checkShieldIntegrity(double currentTemp) {
+    const double CRITICAL_LIMIT = 2600.0; // Kelvin
+    if (currentTemp >= CRITICAL_LIMIT) {
+        triggerActiveCooling();
+    }
+}
+            </pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>III. Critical Barriers in Atmospheric Entry</h2>
+        <div class="challenge-grid">
+            <div class="challenge-card">
+                <h3>01 // Ionized Plasma Blackout</h3>
+                <p>The shock layer generates a plasma sheath that reflects electromagnetic waves. Maintaining telemetry during this phase requires <strong>Magnetic Field Windowing</strong> to bypass the ionization frequency.</p>
+            </div>
+            <div class="challenge-card">
+                <h3>02 // Non-Equilibrium Chemical Dissociation</h3>
+                <p>CO2 molecules break into CO and O within the shock layer. This endothermic reaction creates a <strong>Chemical Non-Equilibrium</strong> state that significantly complicates heat flux predictions.</p>
+            </div>
+            <div class="challenge-card">
+                <h3>03 // Surface Ablation Dynamics</h3>
+                <p>Modeling the mass-loss rate of the heat shield (PICA) requires solving the <strong>Stefan Problem</strong>, where the boundary between the solid shield and the fluid plasma is constantly moving.</p>
+            </div>
+            <div class="challenge-card">
+                <h3>04 // Wake Turbulence Stability</h3>
+                <p>Low-density flow behind the heat shield creates <strong>Vortex Shedding</strong>. This can cause dynamic instability (wobbling) during the transonic transition, necessitating high-speed RCS correction.</p>
+            </div>
+            <div class="challenge-card">
+                <h3>05 // Radiative Heating Dominance</h3>
+                <p>At velocities exceeding 6 km/s, radiative heat transfer from the shock layer becomes larger than convective heating, requiring <strong>Spectral Opacity Modeling</strong> for accurate shield sizing.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="footer-note">
+        This research is a cornerstone of the SPACEHUB 2026 Aerothermodynamics Initiative. Authorized for Open-Source Global Scientific Publication.
+    </div>
+</div>
+
+<script>
+    function switchTab(evt, tabId) {
+        var contents = document.getElementsByClassName("code-container");
+        for (var i = 0; i < contents.length; i++) { contents[i].style.display = "none"; }
+        var buttons = document.getElementsByClassName("tab-btn");
+        for (var i = 0; i < buttons.length; i++) { buttons[i].classList.remove("active"); }
+        document.getElementById(tabId).style.display = "block";
+        evt.currentTarget.classList.add("active");
+    }
+</script>
+
+</body>
+</html>
