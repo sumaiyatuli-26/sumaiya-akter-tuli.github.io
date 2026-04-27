@@ -110,23 +110,36 @@
         <span class="c">// Einstein Tensor G_tt component integration</span>
         <span class="k">return</span> (b_prime * r - b_r) / (<span class="f">pow</span>(r, <span class="number">3</span>));
     }
-};</div>
-
-        <div id="py" class="code-window">
+};        <div id="py" class="code-window">
 <span class="k">import</span> numpy <span class="k">as</span> np
 
-<span class="k">def</span> <span class="f">evaluate_nec</span>(density, radial_pressure):
-    <span class="c"># Traversability requires NEC violation: rho + p < 0</span>
-    stability_factor = density + radial_pressure
-    
-    <span class="k">if</span> stability_factor < <span class="number">0</span>:
-        <span class="k">return</span> <span class="s">"STATUS: METRIC STABILIZED"</span>
-    <span class="k">return</span> <span class="s">"STATUS: COLLAPSE DETECTED"</span>
+<span class="k">class</span> <span class="f">WormholeAnalyzer</span>:
+    <span class="k">def</span> <span class="f">__init__</span>(self, throat_radius):
+        self.b0 = throat_radius
+        self.c = <span class="n">3e8</span>  <span class="c"># Speed of Light</span>
 
-<span class="c"># Simulation for Quantum Vacuum Fluctuations</span>
-<span class="f">print</span>(evaluate_nec(density=-<span class="n">1.5e12</span>, radial_pressure=<span class="n">0.8e12</span>))</div>
+    <span class="k">def</span> <span class="f">check_nec_violation</span>(self, rho, pressure):
+        <span class="c"># Metric Stability Condition: rho + p/c^2 < 0</span>
+        nec_value = rho + (pressure / self.c**<span class="number">2</span>)
+        
+        <span class="k">if</span> nec_value < <span class="number">0</span>:
+            <span class="k">return</span> <span class="s">"STATUS: METRIC STABILIZED (Exotic Matter Confirmed)"</span>
+        <span class="k">else</span>:
+            <span class="k">return</span> <span class="s">"STATUS: SINGULARITY COLLAPSE (Insufficient Negative Density)"</span>
 
-        <div id="logs" class="code-window">
+    <span class="k">def</span> <span class="f">calculate_tidal_strain</span>(self, r, observer_mass):
+        <span class="c"># Riemann Curvature Tensor analysis for biological safety</span>
+        strain = (<span class="n">6.674e-11</span> * observer_mass) / (self.c**<span class="number">2</span> * r**<span class="number">3</span>)
+        <span class="k">return</span> <span class="f">f"Tidal Force: {strain:.6e} m^-2"</span>
+
+<span class="c"># Execute Simulation</span>
+analyzer = <span class="f">WormholeAnalyzer</span>(throat_radius=<span class="n">15.0</span>)
+<span class="f">print</span>(analyzer.<span class="f">check_nec_violation</span>(rho=-<span class="n">1.5e12</span>, pressure=<span class="n">0.5e12</span>))
+<span class="f">print</span>(analyzer.<span class="f">calculate_tidal_strain</span>(r=<span class="n">15.0</span>, observer_mass=<span class="n">75</span>))</div>
+
+
+
+     <div id="logs" class="code-window">
 <div class="log-entry">[SYS_INIT] Loading Lorentzian Manifold...</div>
 <div class="log-entry">[DATA] Throat Diameter initialized at 15.0m.</div>
 <div class="log-entry">[FLUX] Injecting Negative Energy via Casimir Effect...</div>
